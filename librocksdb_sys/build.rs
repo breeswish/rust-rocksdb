@@ -84,6 +84,9 @@ fn build_rocksdb() -> Build {
         cfg.define("FORCE_SSE42", "ON");
     }
     let dst = cfg
+        .define("WITH_JEMALLOC", "OFF")
+        .cflag("-DROCKSDB_VALGRIND_RUN")
+        .cxxflag("-DROCKSDB_VALGRIND_RUN")
         .register_dep("Z")
         .define("WITH_ZLIB", "ON")
         .register_dep("BZIP2")
